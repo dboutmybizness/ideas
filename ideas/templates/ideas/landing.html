@@ -1,0 +1,6 @@
+<h1>{{ idea.name }}</h1>
+
+<h2>Notes</h2>
+{% for notes in idea.notes %}
+	{{ notes.txt }}
+{% endfor %}

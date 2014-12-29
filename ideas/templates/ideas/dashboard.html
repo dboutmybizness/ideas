@@ -1,0 +1,11 @@
+
+
+{% if ideas %}
+	<ul>
+	{% for idea in ideas %}
+		<li>
+		<a href="/idea/{{ idea.id }}/">{{ idea.name }}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% endif %}
