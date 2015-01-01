@@ -1,6 +1,20 @@
+
+
 <h1>{{ idea.name }}</h1>
 
+<div>Short Description:
+<p>{{ idea.short_description }}</p>
+</div>
+
 <h2>Notes</h2>
+<ul>
 {% for notes in idea.notes %}
-	{{ notes.txt }}
+	<li>{{ notes.txt }}</li>
 {% endfor %}
+</ul>
+
+
+<form name="add_notes" action="." method="POST">{% csrf_token %}
+	<textarea name="note" placeholder="add notes here"></textarea>
+	<button type="submit">Add</button>
+</form>

@@ -23,9 +23,23 @@ def idea_landing(request, id):
         return HttpResponseRedirect('/login.html')
     Meta = site_meta(request)
 
+
     from django.shortcuts import get_object_or_404
     
     idea = get_object_or_404(Idea, pk = id)
+
+    if request.method == 'POST':
+        if 'note' in request.POST:
+            if request.POST['note']:
+                #save it
+                note = Note(
+                    idea = idea,
+                    txt = request.POST['note']
+                )
+                note.save()
+
+    
+    
 
     t = loader.get_template('ideas/landing.html')
     c = RequestContext( request,{
@@ -49,7 +63,7 @@ def idea_create(request):
     return HttpResponse(t.render(c))
 
 def site_meta(request):
-	return 1
+    return 1
 
 def ck_user(request):
-	return 1
+    return 1

@@ -22,7 +22,7 @@ class Idea(models.Model):
     created_time = models.DateTimeField(auto_now_add = True, null = True)
 
     def notes(self):
-        return Note.objects.filter(idea = self)
+        return Note.objects.filter(idea = self).order_by('-created_time')
 
     def __unicode__(self):
         return self.name
