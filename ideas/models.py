@@ -16,7 +16,7 @@ class Idea_Type(models.Model):
 class Idea(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField(max_length = 100)
-    idea_type = models.ForeignKey(Idea_Type, null = True)
+    idea_type = models.ForeignKey(Idea_Type, null = True, blank=True)
     short_description = models.CharField(max_length = 254, blank=True)
     full_description = models.TextField(blank=True)
     created_time = models.DateTimeField(auto_now_add = True, null = True)
