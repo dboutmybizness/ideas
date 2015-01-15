@@ -7,6 +7,7 @@ class Idea_Type(models.Model):
     industries = (
         ('TECHNOLOGY', 'Technology'),
         ('MASS_MEDIA', 'Mass Media'),
+        ('GEN', 'General'),
     )
 
     idea_industry = models.CharField(max_length=25, choices=industries)
@@ -19,6 +20,8 @@ class Idea(models.Model):
     idea_type = models.ForeignKey(Idea_Type, null = True, blank=True)
     short_description = models.CharField(max_length = 254, blank=True)
     full_description = models.TextField(blank=True)
+    initial_summary = models.TextField(blank=True, null=True)
+    #created_date = models.DateTimeField()
     created_time = models.DateTimeField(auto_now_add = True, null = True)
 
     def notes(self):
@@ -29,9 +32,11 @@ class Idea(models.Model):
 
 class Note(models.Model):
     idea = models.ForeignKey(Idea)
+    headline = models.CharField(max_length = 140, blank = True)
     txt = models.TextField()
+    created_date = models.DateField()
     created_time = models.DateTimeField(auto_now_add = True)
     modified_time = models.DateTimeField(auto_now = True)
 
     def __unicode__(self):
-        return self.txt
+        return '%s - %s' % (self.idea,self.txt[:75])
