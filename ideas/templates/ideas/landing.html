@@ -2,24 +2,43 @@
 
 
 {% block content %}
-
 	<h1>{{ idea.name }}</h1>
+	
 
-	<div>Short Description:
-	<p>{{ idea.short_description }}</p>
+	<div class="medium-5 columns panel idea-info">
+
+		<article>
+			<img src="{{ STATIC_URL }}site_imgs/idea-fallback.png" />
+		</article>
+		<article>
+			<strong>Description:</strong>
+			<p>{{ idea.short_description }}</p>
+		</article>
+		<article>
+			<strong>Idea Type</strong>
+			<p>{{ idea.idea_type }}</p>
+		</article>
+
+
 	</div>
 
-	<h2>Notes</h2>
-	<ul>
-	{% for notes in idea.notes %}
-		<li>{{ notes.txt }}</li>
-	{% endfor %}
-	</ul>
+	<div class="medium-7 columns">
 
 
-	<form name="add_notes" action="." method="POST">{% csrf_token %}
-		<textarea name="note" placeholder="add notes here"></textarea>
-		<button type="submit">Add</button>
-	</form>
+		
+
+		<h2>Notes</h2>
+		<ul>
+		{% for notes in idea.notes %}
+			<li>{{ notes.txt }}</li>
+		{% endfor %}
+		</ul>
+
+
+		<form name="add_notes" action="." method="POST">{% csrf_token %}
+			<textarea name="note" placeholder="add notes here"></textarea>
+			<button type="submit">Add</button>
+		</form>
+	</div>
 
 {% endblock %}

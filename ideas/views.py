@@ -26,11 +26,22 @@ def ideas_main(request):
     Meta = site_meta(request)
 
     ideas = Idea.objects.all().order_by('name')
+    albet = 'abcdefghijklmnopqrstuvwxyz'
+    idea_holder = {}
+    for letter in albet:
+        idea_holder[letter] = []
+        for idea in ideas:
+            if idea.name.startswith(letter) or idea.name.startswith(letter.capitalize()):
+
+                idea_holder[letter].append(idea)
+
+
 
     t = loader.get_template('ideas/ideas.html')
     c = RequestContext( request,{
         'Meta' : Meta,
-        'ideas' : ideas,
+        'idea_holder' : idea_holder,
+        'albet' : albet,
     })
     return HttpResponse(t.render(c))
 

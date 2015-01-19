@@ -9060,3 +9060,22 @@ idea-block-list img {
 body {
   margin-top: 40px;
 }
+
+/* line 62, ../../../foundation/scss/app.scss */
+.albet-pad-top {
+  margin-top: 75px;
+}
+
+/* line 67, ../../../foundation/scss/app.scss */
+.idea-info strong {
+  font-size: .8em;
+}
+/* line 70, ../../../foundation/scss/app.scss */
+.idea-info img {
+  width: 100%;
+}
+/* line 73, ../../../foundation/scss/app.scss */
+.idea-info article {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #000;
+}
