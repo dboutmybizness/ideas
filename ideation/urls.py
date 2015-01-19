@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('ideas.views',
-	url(r'^$', 'main'),
-	url(r'^idea/(?P<id>\d+)/$', 'idea_landing'),
-	url(r'^idea/$', 'idea_create'),
+	url(r'^$', 'dash'),
+	url(r'^ideas/(?P<id>\d+)/$', 'idea_landing'),
+	url(r'^ideas/$', 'ideas_main'),
 )

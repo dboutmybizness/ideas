@@ -24,6 +24,11 @@ class Idea(models.Model):
     #created_date = models.DateTimeField()
     created_time = models.DateTimeField(auto_now_add = True, null = True)
 
+    def link(self):
+        return '/ideas/%d/' % (self.id)
+
+
+
     def notes(self):
         return Note.objects.filter(idea = self).order_by('-created_time')
 
@@ -40,3 +45,8 @@ class Note(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.idea,self.txt[:75])
+
+class Recently_Viewed(models.Model):
+    idea = models.ForeignKey(Idea)
+    user = models.ForeignKey(User)
+    viewed_time = models.DateTimeField()

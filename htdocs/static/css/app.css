@@ -9042,3 +9042,21 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
+/* line 45, ../../../foundation/scss/app.scss */
+a {
+  color: #f7752d;
+}
+/* line 47, ../../../foundation/scss/app.scss */
+a:hover {
+  color: #8cc63e;
+}
+
+/* line 53, ../../../foundation/scss/app.scss */
+idea-block-list img {
+  width: 100%;
+}
+
+/* line 58, ../../../foundation/scss/app.scss */
+body {
+  margin-top: 40px;
+}
