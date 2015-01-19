@@ -24,6 +24,13 @@ body{
   margin-top: 40px;
 }
 
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+  background: $main-grey;
+  &:hover{
+    background: $main-orange;
+  }
+}
+
 .albet-pad-top{
   margin-top: 75px;
 }

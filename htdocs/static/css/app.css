@@ -9070,64 +9070,73 @@ body {
 }
 
 /* line 27, ../../../foundation/scss/_foundation-overlay.scss */
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+  background: #818182;
+}
+/* line 29, ../../../foundation/scss/_foundation-overlay.scss */
+.top-bar-section li.active:not(.has-form) a:not(.button):hover {
+  background: #f7752d;
+}
+
+/* line 34, ../../../foundation/scss/_foundation-overlay.scss */
 .albet-pad-top {
   margin-top: 75px;
 }
 
-/* line 32, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 39, ../../../foundation/scss/_foundation-overlay.scss */
 .idea-info strong {
   font-size: .8em;
 }
-/* line 35, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 42, ../../../foundation/scss/_foundation-overlay.scss */
 .idea-info img {
   width: 100%;
 }
-/* line 38, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 45, ../../../foundation/scss/_foundation-overlay.scss */
 .idea-info article {
   margin: 10px 0px 15px 0px;
   border-bottom: 1px solid #000;
 }
-/* line 41, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 48, ../../../foundation/scss/_foundation-overlay.scss */
 .idea-info article:first-of-type, .idea-info article:last-of-type {
   border: 0px;
 }
-/* line 44, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 51, ../../../foundation/scss/_foundation-overlay.scss */
 .idea-info article:first-of-type {
   margin: 0px;
 }
 
-/* line 51, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 58, ../../../foundation/scss/_foundation-overlay.scss */
 .icon-bar > a:hover {
   background: #8cc63e;
 }
 
-/* line 57, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 64, ../../../foundation/scss/_foundation-overlay.scss */
 idea-block-list img {
   width: 100%;
 }
 
-/* line 62, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 69, ../../../foundation/scss/_foundation-overlay.scss */
 .bot-marpad {
   margin-bottom: 35px;
 }
 
-/* line 66, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 73, ../../../foundation/scss/_foundation-overlay.scss */
 article.notes {
   border-bottom: 1px solid #818182;
   padding: 20px 12px;
   margin-bottom: 0px;
 }
-/* line 70, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 77, ../../../foundation/scss/_foundation-overlay.scss */
 article.notes:hover {
   background: #eee;
 }
-/* line 73, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 80, ../../../foundation/scss/_foundation-overlay.scss */
 article.notes header {
   font-size: 1.5em;
   margin-bottom: 5px;
   font-weight: 600px;
 }
-/* line 78, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 85, ../../../foundation/scss/_foundation-overlay.scss */
 article.notes div.nav {
   display: none;
   position: absolute;
@@ -9137,7 +9146,7 @@ article.notes div.nav {
   font-size: .8em;
   margin-top: -21px;
 }
-/* line 87, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 94, ../../../foundation/scss/_foundation-overlay.scss */
 article.notes div.nav nav {
   display: inline-block;
   background: #333;
@@ -9147,7 +9156,7 @@ article.notes div.nav nav {
   padding: 1px 5px;
 }
 
-/* line 99, ../../../foundation/scss/_foundation-overlay.scss */
+/* line 106, ../../../foundation/scss/_foundation-overlay.scss */
 section.wid-block > header {
   display: block;
   background: #333;
