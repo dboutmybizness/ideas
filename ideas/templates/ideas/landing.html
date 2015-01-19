@@ -10,6 +10,18 @@
 		<article>
 			<img src="{{ STATIC_URL }}site_imgs/idea-fallback.png" />
 		</article>
+		<div class="icon-bar three-up">
+			<a class="item">
+				<i class="fi-widget"></i>
+			</a>
+			<a class="item">
+				<i class="fi-page-edit"></i>
+			</a>
+
+			<a class="item">
+				<i class="fi-at-sign"></i>
+			</a>
+		</div>
 			
 		</article>
 		<article>
@@ -21,23 +33,7 @@
 			<p>{{ idea.idea_type }}</p>
 		</article>
 
-		<div class="icon-bar five-up">
-			<a class="item">
-			<i class="fi-page-edit"></i>
-			</a>
-			<a class="item">
-			<i class="fi-bookmark"></i>
-			</a>
-			<a class="item">
-			<i class="fi-info"></i>
-			</a>
-			<a class="item">
-			<i class="fi-mail"></i>
-			</a>
-			<a class="item">
-			<i class="fi-like"></i>
-			</a>
-		</div>
+		
 
 
 	</div>
@@ -46,19 +42,49 @@
 
 
 		
+<!-- 		<div class="panel bot-marpad">
+			<h2>Notes</h2>
+			<form name="add_notes" action="." method="POST">{% csrf_token %}
+				<textarea name="note" placeholder="add notes here"></textarea>
+				<button type="submit">Add</button>
+			</form>
+		</div> -->
+		<section class="wid-block">
+			<header>Notes</header>
 
-		<h2>Notes</h2>
-		<ul>
-		{% for notes in idea.notes %}
-			<li>{{ notes.txt }}</li>
-		{% endfor %}
-		</ul>
+			{% for notes in idea.notes %}
+				
+				<article class="notes">
+					<div class="nav">
+						<nav>
+							<a href="{{ idea.link }}edit/{{ notes.id }}/">edit</a>
+						</nav>
+					</div>
+					
+					<header>{{ notes.headline_echo }}</header>
+					<p>{{ notes.txt|truncatewords:120 }}</p>
+					<div class="text-right"><small>{{ notes.created_time }}</small></div>
+				</article>
+			{% endfor %}
+		</section>
 
 
-		<form name="add_notes" action="." method="POST">{% csrf_token %}
-			<textarea name="note" placeholder="add notes here"></textarea>
-			<button type="submit">Add</button>
-		</form>
+
+		
 	</div>
 
+{% endblock %}
+
+{% block extra_js %}
+	<script type="text/javascript">
+		$('article.notes').mouseover(function(){
+			var ele = $(this).find('div.nav');
+			ele.show();
+		});
+		$('article.notes').mouseout(function(){
+			var ele = $(this).find('div.nav');
+			ele.hide();
+		});
+
+	</script>
 {% endblock %}

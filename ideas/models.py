@@ -27,7 +27,7 @@ class Idea(models.Model):
     def link(self):
         return '/ideas/%d/' % (self.id)
 
-
+    
 
     def notes(self):
         return Note.objects.filter(idea = self).order_by('-created_time')
@@ -42,6 +42,9 @@ class Note(models.Model):
     created_date = models.DateField()
     created_time = models.DateTimeField(auto_now_add = True)
     modified_time = models.DateTimeField(auto_now = True)
+
+    def headline_echo(self):
+        return (self.headline if self.headline else 'Untitled')
 
     def __unicode__(self):
         return '%s - %s' % (self.idea,self.txt[:75])

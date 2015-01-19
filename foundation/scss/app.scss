@@ -39,43 +39,4 @@
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
 
-$main-orange : #f7752d;
-$main-lime : #8cc63e;
-
-a{
-  color: $main-orange;
-  &:hover {
-    color: $main-lime;
-  }
-}
-
-idea-block-list{
-  img{
-    width: 100%;
-  }
-}
-
-body{
-  margin-top: 40px;
-}
-
-.albet-pad-top{
-  margin-top: 75px;
-}
-
-.idea-info{
-  strong{
-    font-size: .8em;
-  }
-  img{
-    width: 100%;
-  }
-  article{
-    margin-bottom: 15px;
-    border-bottom:  1px solid #000;
-    &:first-of-type , &:last-of-type{
-      border: 0px;
-    }
-
-  }
-}
+@import "foundation-overlay"
