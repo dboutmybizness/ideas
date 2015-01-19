@@ -106,4 +106,6 @@ def site_meta(request):
     return 1
 
 def ck_user(request):
-    return 1
+    if request.user.is_authenticated():
+        return True
+    return False
