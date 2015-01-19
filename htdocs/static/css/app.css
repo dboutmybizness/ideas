@@ -9079,3 +9079,7 @@ body {
   margin-bottom: 15px;
   border-bottom: 1px solid #000;
 }
+/* line 76, ../../../foundation/scss/app.scss */
+.idea-info article:first-of-type, .idea-info article:last-of-type {
+  border: 0px;
+}
