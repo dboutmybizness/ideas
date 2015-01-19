@@ -1,11 +1,15 @@
+{% extends 'ideas/base.html' %}
 
 
-{% if ideas %}
-	<ul>
-	{% for idea in ideas %}
-		<li>
-		<a href="/idea/{{ idea.id }}/">{{ idea.name }}</a>
-		</li>
-	{% endfor %}
-	</ul>
-{% endif %}
+{% block content %}
+	{% if ideas %}
+		<ul>
+		{% for idea in ideas %}
+			<li>
+			<a href="/idea/{{ idea.id }}/">{{ idea.name }}</a>
+			</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+{% endblock %}

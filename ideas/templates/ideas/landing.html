@@ -1,20 +1,25 @@
+{% extends 'ideas/base.html' %}
 
 
-<h1>{{ idea.name }}</h1>
+{% block content %}
 
-<div>Short Description:
-<p>{{ idea.short_description }}</p>
-</div>
+	<h1>{{ idea.name }}</h1>
 
-<h2>Notes</h2>
-<ul>
-{% for notes in idea.notes %}
-	<li>{{ notes.txt }}</li>
-{% endfor %}
-</ul>
+	<div>Short Description:
+	<p>{{ idea.short_description }}</p>
+	</div>
+
+	<h2>Notes</h2>
+	<ul>
+	{% for notes in idea.notes %}
+		<li>{{ notes.txt }}</li>
+	{% endfor %}
+	</ul>
 
 
-<form name="add_notes" action="." method="POST">{% csrf_token %}
-	<textarea name="note" placeholder="add notes here"></textarea>
-	<button type="submit">Add</button>
-</form>
+	<form name="add_notes" action="." method="POST">{% csrf_token %}
+		<textarea name="note" placeholder="add notes here"></textarea>
+		<button type="submit">Add</button>
+	</form>
+
+{% endblock %}
