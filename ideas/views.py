@@ -3,10 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth import authenticate, login, logout
 
 from ideas.models import *
+import ideas.config as CF
 
 def dash(request):
     if not ck_user(request):
-        return HttpResponseRedirect('/login.html')
+        return HttpResponseRedirect(CF.login_page)
     Meta = site_meta(request)
 
     # ideas = Idea.objects.all()
@@ -22,7 +23,7 @@ def dash(request):
 
 def ideas_main(request):
     if not ck_user(request):
-        return HttpResponseRedirect('/login.html')
+        return HttpResponseRedirect(CF.login_page)
     Meta = site_meta(request)
 
     ideas = Idea.objects.all().order_by('name')
@@ -47,7 +48,7 @@ def ideas_main(request):
 
 def idea_landing(request, id):
     if not ck_user(request):
-        return HttpResponseRedirect('/login.html')
+        return HttpResponseRedirect(CF.login_page)
     Meta = site_meta(request)
 
 
@@ -90,7 +91,7 @@ def idea_landing(request, id):
 
 def idea_create(request):
     if not ck_user(request):
-        return HttpResponseRedirect('/login.html')
+        return HttpResponseRedirect(CF.login_page)
     Meta = site_meta(request)
 
     itypes = Idea_Type.objects.all().order_by('idea_type')

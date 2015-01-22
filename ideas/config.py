@@ -1,0 +1,1 @@
+login_page = '/login.html?next=/ideas/'
