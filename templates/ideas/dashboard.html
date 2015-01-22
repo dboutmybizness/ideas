@@ -1,0 +1,18 @@
+{% extends 'ideas/base.html' %}
+
+
+{% block content %}
+	<h1>Recent Ideas</h1>
+
+	{% if recently_viewed %}
+		<ul class="small-block-grid-2 medium-block-grid-3 idea-block-list">
+		{% for rv in recently_viewed %}
+			<li>
+				<a href="{{ rv.idea.link }}"><img src="{{ STATIC_URL }}site_imgs/idea-fallback.png" /></a>
+				<p><a href="{{ rv.idea.link }}">{{ rv.idea.name }}</a></p>
+			</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+{% endblock %}
