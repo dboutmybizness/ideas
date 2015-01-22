@@ -1,4 +1,3 @@
-static/
 *.pyc
 customs/config.py
 .DS_STORE
