@@ -1,0 +1,55 @@
+{% extends 'ideas/base.html' %}
+
+
+{% block content %}
+	<ul class="breadcrumbs">
+		<li><a href="{{ note.idea.link }}">{{ note.idea }}</a></li>
+		<li class="current"><a href="#">{{ note.headline_echo }}</a></li>
+	</ul>
+
+	<form onsubmit="return save_note()">
+		{% csrf_token %}
+		<strong>Headline:</strong>
+		<input type="text" name="headline" id="headline" value="{{ note.headline }}" placeholder="Untitled" />
+
+		<strong>Text:</strong>
+		<textarea class="note-textarea" id="txt" name="txt">{{ note.txt }}</textarea>
+
+		<div class="text-right">
+			<button type="submit">Save</button>
+		</div>
+
+	</form>
+{% endblock %}
+
+{% block extra_js %}
+	<script type="text/javascript">
+		var mtoken="";
+		$(document).ready(function(){
+			apply_token();
+		});
+		var apply_token = function(){
+			mtoken = $('input[name="csrfmiddlewaretoken"]').val();
+		}
+
+
+		var save_note = function(){
+
+			var headline = $('#headline').val();
+			var txt = $('#txt').val();
+
+			var params = {
+				'form-note-save' : 1,
+				'headline': headline,
+				'txt' : txt,
+				'csrfmiddlewaretoken': mtoken,
+			};
+
+			$.post('{{ Meta.current_path }}', params, function(resp){
+				console.log(resp);
+			},'json');
+
+			return false;
+		}
+	</script>
+{% endblock %}

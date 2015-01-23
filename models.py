@@ -43,6 +43,9 @@ class Note(models.Model):
     created_time = models.DateTimeField(auto_now_add = True)
     modified_time = models.DateTimeField(auto_now = True)
 
+    def link(self):
+        return '/ideas/%d/note/%d/' % (self.idea.id, self.id)
+
     def headline_echo(self):
         return (self.headline if self.headline else 'Untitled')
 

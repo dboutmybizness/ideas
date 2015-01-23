@@ -2,6 +2,8 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth import authenticate, login, logout
 
+from django.shortcuts import get_object_or_404
+
 from ideas.models import *
 import ideas.config as CF
 
@@ -26,7 +28,7 @@ def ideas_main(request):
         return HttpResponseRedirect(CF.login_page)
     Meta = site_meta(request)
 
-    ideas = Idea.objects.all().order_by('name')
+    ideas = Idea.objects.filter(user=request.user).order_by('name')
     albet = 'abcdefghijklmnopqrstuvwxyz'
     idea_holder = {}
     for letter in albet:
@@ -50,11 +52,8 @@ def idea_landing(request, id):
     if not ck_user(request):
         return HttpResponseRedirect(CF.login_page)
     Meta = site_meta(request)
-
-
-    from django.shortcuts import get_object_or_404
     
-    idea = get_object_or_404(Idea, pk = id)
+    idea = get_object_or_404(Idea, pk = id, user=request.user)
     from datetime import datetime
 
     ck_rv = Recently_Viewed.objects.filter(user=request.user,idea=idea).delete()
@@ -78,6 +77,9 @@ def idea_landing(request, id):
                     txt = request.POST['note']
                 )
                 note.save()
+        if 'form-note-create' in request.POST:
+            n = Note(idea=idea)
+            return save_note(n, request.POST)
 
     
     
@@ -103,7 +105,46 @@ def idea_create(request):
     })
     return HttpResponse(t.render(c))
 
+def save_note(note, post):
+    import json
+
+    response_data = {
+        'result' : 0,
+    }
+
+    pars = post
+    note.txt = pars['txt']
+    note.headline = pars['headline']
+    note.save()
+
+    if 'form-note-create' in post:
+        response_data['datetime'] = str(note.created_time)
+        response_data['link'] = note.link()
+
+    response_data['result'] = 1
+
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+def note_landing(request, idea_id, note_id):
+    if not ck_user(request):
+        return HttpResponseRedirect(CF.login_page)
+    Meta = site_meta(request)
+
+    note = get_object_or_404(Note, pk = note_id, idea=idea_id, idea__user=request.user)
+
+    if request.method == 'POST' and 'form-note-save' in request.POST:
+        return save_note(note, request.POST)
+
+
+    t = loader.get_template('ideas/note_landing.html')
+    c = RequestContext( request,{
+        'Meta' : Meta,
+        'note' : note,
+    })
+    return HttpResponse(t.render(c))
+
 def site_meta(request):
+    CF.current_path = request.get_full_path()
     return CF
 
 def ck_user(request):

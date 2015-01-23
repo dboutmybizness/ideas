@@ -3,6 +3,8 @@
 
 {% block content %}
 	<h1>{{ idea.name }}</h1>
+
+	<h5 class="subheader">{{ idea.short_description }}</h5>
 	
 
 	<div class="medium-5 columns panel idea-info">
@@ -50,23 +52,46 @@
 			</form>
 		</div> -->
 		<section class="wid-block">
-			<header>Notes</header>
+			<header>Notes <i class="fi-pencil" id="new-note"></i></header>
+			<div id="new-note-block" style="display:none;">
+				<div class="text-right">
+					<i class="fi-x close-pp"></i>
+				</div>
+				<form onsubmit="return create_note();">
+					{% csrf_token %}
+					<strong>Headline</strong>
+					<input type="text" id="headline" name="headline" />
+
+					<strong>Text</strong>
+					<textarea name="txt" id="txt"></textarea>
+					<div class="text-right">
+						<button type="submit">Create</button>
+					</div>
+				</form>
+
+
+			</div>
 
 			{% for notes in idea.notes %}
 				
 				<article class="notes">
 					<div class="nav">
 						<nav>
-							<a href="{{ idea.link }}note/{{ notes.id }}/">open</a>
+							<a href="{{ idea.link }}note/{{ notes.id }}/">edit</a>
 							
-							<a href="{{ idea.link }}note/{{ notes.id }}/edit/">edit</a>
+							<!-- <a href="{{ idea.link }}note/{{ notes.id }}/edit/">edit</a> -->
 						</nav>
 					</div>
 					
 					<header>{{ notes.headline_echo }}</header>
-					<p>{{ notes.txt|truncatewords:120 }}</p>
+					<p>{{ notes.txt|truncatewords:60 }}</p>
 					<div class="text-right"><small>{{ notes.created_time }}</small></div>
 				</article>
+
+			{% empty %}
+				<div>
+					There aren't any notes.
+				</div>
 			{% endfor %}
 		</section>
 
@@ -79,14 +104,62 @@
 
 {% block extra_js %}
 	<script type="text/javascript">
-		$('article.notes').mouseover(function(){
-			var ele = $(this).find('div.nav');
-			ele.show();
+
+		mtoken = '';
+
+		$(document).ready(function(){
+			$('#new-note').click(function(){
+				toggle_new_note();
+			})
+			$('article.notes').mouseover(function(){
+				var ele = $(this).find('div.nav');
+				ele.show();
+			});
+			$('article.notes').mouseout(function(){
+				var ele = $(this).find('div.nav');
+				ele.hide();
+			});
+			$('.close-pp').click(function(){
+				var ele = $(this);
+				ele.parent().parent().hide();
+			});
+
+			apply_token();
 		});
-		$('article.notes').mouseout(function(){
-			var ele = $(this).find('div.nav');
-			ele.hide();
-		});
+
+		var apply_token = function(){
+			mtoken = $('input[name="csrfmiddlewaretoken"]').val();
+		}
+
+		var toggle_new_note = function(){
+			var note_blk = $('#new-note-block');
+			if ( note_blk.is(':visible')){
+				note_blk.slideUp();
+			} else {
+				note_blk.slideDown();
+			}
+		}
+
+		var create_note = function(){
+			var headline = $('#headline').val();
+			var txt = $('#txt').val();
+
+			var params = {
+				'form-note-create' : 1,
+				'headline': headline,
+				'txt' : txt,
+				'csrfmiddlewaretoken': mtoken,
+			};
+
+			$.post('{{ Meta.current_path }}', params, function(resp){
+				if (resp.result){
+					window.location = resp.link;
+				}
+			},'json');
+			return false;
+		}
+
+
 
 	</script>
 {% endblock %}
