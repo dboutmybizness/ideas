@@ -28,8 +28,8 @@
 					<a href="#"><i class="fi-widget"></i></a>
 
 					<ul class="dropdown">
-						<li class="active"><a href="/settings/"><!-- <i class="fi-power"></i>  -->Setting</a></li>
-						<li class="active"><a href="/logout/"><i class="fi-power"></i> Logout</a></li>
+						<li class="active"><a href="{{ Meta.url_root }}settings/"><!-- <i class="fi-power"></i>  -->Setting</a></li>
+						<li class="active"><a href="{{ Meta.url_root }}logout/"><i class="fi-power"></i> Logout</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -37,9 +37,9 @@
 			<!-- Left Nav Section -->
 			<ul class="left">
 				<li class="divider"></li>
-				<li><a href="/">Dashboard</a></li>
+				<li><a href="{{ Meta.url_root }}">Dashboard</a></li>
 				<li class="divider"></li>
-				<li><a href="/ideas/">Ideas</a></li>
+				<li><a href="{{ Meta.url_root }}list/">Ideas</a></li>
 				<li class="divider"></li>
 			</ul>
 		</section>

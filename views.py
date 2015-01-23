@@ -104,7 +104,7 @@ def idea_create(request):
     return HttpResponse(t.render(c))
 
 def site_meta(request):
-    return 1
+    return CF
 
 def ck_user(request):
     if request.user.is_authenticated():
